@@ -1,20 +1,31 @@
-import { useState, useEffect } from 'react'
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+
+function Inicio() {
+  return <h1>Página de Inicio</h1>
+}
+
+function About() {
+  return <h1>Sobre mí</h1>
+}
+
+function Contacto() {
+  return <h1>Contacto</h1>
+}
 
 export default function App() {
-  const [pokemon, setPokemon] = useState(null)
-
-  useEffect(() => {
-    fetch('https://pokeapi.co/api/v2/pokemon/charmander')
-      .then(res => res.json())
-      .then(data => setPokemon(data))
-  }, [])
-
-  if (!pokemon) return <p>Cargando...</p>
-
   return (
-    <div>
-      <h1>{pokemon.name}</h1>
-      <img src={pokemon.sprites.front_default} alt={pokemon.name} />
-    </div>
+    <BrowserRouter>
+      <nav>
+        <Link to="/">Inicio</Link> |{' '}
+        <Link to="/about">About</Link> |{' '}
+        <Link to="/contacto">Contacto</Link>
+      </nav>
+
+      <Routes>
+        <Route path="/" element={<Inicio />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contacto" element={<Contacto />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
