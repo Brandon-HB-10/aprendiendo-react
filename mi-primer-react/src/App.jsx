@@ -4,7 +4,7 @@ export default function App() {
   const [pokemon, setPokemon] = useState(null)
 
   useEffect(() => {
-    fetch('https://pokeapi.co/api/v2/pokemon/pikachu')
+    fetch('https://pokeapi.co/api/v2/pokemon/charmander')
       .then(res => res.json())
       .then(data => setPokemon(data))
   }, [])
